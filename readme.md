@@ -4,7 +4,7 @@
 ![Jar with Molten Slag](Jar.png)
 
 
-A jar with Molten Slag (liquid from Create metallurgy modification).
+A jar with Molten Slag (liquid from Create Metallurgy modification).
 
 
 ## Dependencies
