@@ -16,6 +16,10 @@ Create [6.0.8 to 6.0.10]
 A jar is crafted with one Copper Sheet over one Glass block and stores up to 90mb of any liquid, keeping it upon being broken.
 Can be filled with Spout and emptied with Item Drain from Create. Also can be filled/emptied with Pipes connected to it.
 
+## How to get .jar file?
+Follow README.txt
+
+The output file should appear in build/libs.
 
 ## Final words
 
