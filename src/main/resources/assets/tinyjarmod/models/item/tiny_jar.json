@@ -1,5 +1,5 @@
 {
-  "parent": "tinyjarmod:block/tiny_jar",
+  "parent": "tinyjarmod:block/tiny_jar_floor",
   "display": {
     "ground": {
       "rotation": [0, 0, 0],

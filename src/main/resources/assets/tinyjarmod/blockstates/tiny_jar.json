@@ -1,5 +1,12 @@
 {
-  "multipart": [
-    { "apply": { "model": "tinyjarmod:block/tiny_jar" } }
-  ]
+  "variants": {
+    "face=floor": { "model": "tinyjarmod:block/tiny_jar_floor" },
+
+    "face=wall,facing=north": { "model": "tinyjarmod:block/tiny_jar_wall", "x": -90 },
+    "face=wall,facing=east":  { "model": "tinyjarmod:block/tiny_jar_wall", "x": -90, "y": 90 },
+    "face=wall,facing=south": { "model": "tinyjarmod:block/tiny_jar_wall", "x": -90, "y": 180 },
+    "face=wall,facing=west":  { "model": "tinyjarmod:block/tiny_jar_wall", "x": -90, "y": 270 },
+
+    "face=ceiling": { "model": "tinyjarmod:block/tiny_jar_ceiling", "x": 180}
+  }
 }
