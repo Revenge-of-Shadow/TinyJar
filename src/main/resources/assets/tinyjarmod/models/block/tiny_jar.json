@@ -1,0 +1,28 @@
+{
+  "parent": "minecraft:block/block",
+  "ambientocclusion": false,
+  "textures": {
+    "particle": "tinyjarmod:block/tiny_jar",
+    "texture": "tinyjarmod:block/tiny_jar"
+  },
+  "elements": [
+    {
+      "from": [5, 0, 5],
+      "to": [11, 8, 11],
+      "faces": {
+        "north": {"uv": [0, 0, 6, 8], "texture": "#texture"},
+        "east": {"uv": [0, 0, 6, 8], "texture": "#texture"},
+        "south": {"uv": [0, 0, 6, 8], "texture": "#texture"},
+        "west": {"uv": [0, 0, 6, 8], "texture": "#texture"},
+        "up": {"uv": [12, 6, 6, 0], "texture": "#texture"},
+        "down": {"uv": [12, 6, 6, 12], "texture": "#texture"}
+      }
+    }
+  ],
+  "display": {
+    "thirdperson_righthand": {
+      "translation": [-0.25, 2, 0],
+      "scale": [0.5, 0.5, 0.5]
+    }
+  }
+}
