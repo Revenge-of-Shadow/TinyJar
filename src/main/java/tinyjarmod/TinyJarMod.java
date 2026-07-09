@@ -6,6 +6,7 @@ import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
@@ -20,6 +21,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.ModelEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
@@ -54,7 +56,7 @@ public class TinyJarMod
                     .sound(SoundType.GLASS)
                     .noOcclusion()
                     .lightLevel(state -> state.getValue(TinyJar.LIGHT_LEVEL))
-                    .pushReaction(PushReaction.NORMAL)
+                    .pushReaction(PushReaction.PUSH_ONLY)
             )
     );
 
@@ -88,26 +90,12 @@ public class TinyJarMod
         // Some common setup code
         LOGGER.info("Loading TinyJar.");
     }
-
-    // Add the tinyjar block item to the building blocks tab
+        // Add the tinyjar block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
         if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
             event.accept(TINY_JAR_ITEM);
         }
     }
-    @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
-    public static class ClientModEvents
-    {
-        @SubscribeEvent
-        public static void onClientSetup(FMLClientSetupEvent event)
-        {
-            event.enqueueWork(()->
-                    ItemBlockRenderTypes.setRenderLayer(TINY_JAR.get(), RenderType.cutout())
-            );
-            event.enqueueWork(() ->
-                    BlockEntityRenderers.register(TINY_JAR_ENTITY.get(), TinyJarRenderer::new)
-            );
-        }
-    }
+
 }

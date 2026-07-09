@@ -4,6 +4,9 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -31,6 +34,9 @@ public class TinyJarBlockEntity extends BlockEntity {
         protected void onContentsChanged(){
             setChanged();
             updateLight();
+            if (level != null && !level.isClientSide) {
+                level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
+            }
         }
     };
 
@@ -48,7 +54,6 @@ public class TinyJarBlockEntity extends BlockEntity {
         if(level == null || level.isClientSide) return;
         int target = tank.getFluid().isEmpty() ? 0
                 : Math.min(15, tank.getFluid().getFluid().getFluidType().getLightLevel(tank.getFluid()));
-        System.out.println("[TinyJar] fluid=" + tank.getFluid() + " target light=" + target);
 
         BlockState current = getBlockState();
         if(current.getValue(TinyJar.LIGHT_LEVEL) != target){
@@ -82,4 +87,21 @@ public class TinyJarBlockEntity extends BlockEntity {
         tank.readFromNBT(tag.getCompound("Tank"));
     }
 
+    @Override
+    public CompoundTag getUpdateTag() {
+        CompoundTag tag = new CompoundTag();
+        tag.put("Tank", tank.writeToNBT(new CompoundTag()));
+        return tag;
+    }
+
+    @Override
+    public void handleUpdateTag(CompoundTag tag) {
+        tank.readFromNBT(tag.getCompound("Tank"));
+    }
+
+    @Nullable
+    @Override
+    public Packet<ClientGamePacketListener> getUpdatePacket() {
+        return ClientboundBlockEntityDataPacket.create(this);
+    }
 }

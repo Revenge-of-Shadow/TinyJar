@@ -1,3 +1,5 @@
 {
-  "block.tinyjarmod.tiny_jar": "Tiny Jar"
+  "block.tinyjarmod.tiny_jar": "Tiny Jar",
+  "tooltip.tinyjarmod.tiny_jar.contains": "Contains %s mb of %s",
+  "tooltip.tinyjarmod.tiny_jar.empty": "Empty"
 }
